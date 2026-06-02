@@ -1,5 +1,6 @@
 import React from "react";
 import "../assets/css/Header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -7,9 +8,9 @@ const Header = () => {
       <div className="container">
 
         {/* Logo */}
-        <a href="/" className="navbar-brand brand-logo">
+        <Link to="/" className="navbar-brand brand-logo">
           <span className="brand-accent">Stock</span>Predict
-        </a>
+        </Link>
 
         {/* Mobile Toggle */}
         <button
@@ -30,13 +31,13 @@ const Header = () => {
           id="navbarContent"
         >
           <div className="nav-actions">
-            <a href="/login" className="login-btn">
+            <Link to="/login" className="login-btn">
               Login
-            </a>
+            </Link>
 
-            <a href="/register" className="register-btn">
+            <Link to="/register" className="register-btn">
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
 

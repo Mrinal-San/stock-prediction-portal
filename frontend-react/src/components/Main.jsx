@@ -1,9 +1,11 @@
 import React from "react";
 import "../assets/css/Main.css";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Main = () => {
   return (
-    <section className="hero-section">
+      <section className="hero-section">
       <div className="container">
         <div className="hero-content">
 
