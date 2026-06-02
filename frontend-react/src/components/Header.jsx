@@ -1,8 +1,21 @@
 import React from "react";
 import "../assets/css/Header.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import {AuthContext} from "../AuthProvider";
+import {useContext} from "react";
 
 const Header = () => {
+  const {isLoggedIn, setIsLoggedIn} = useContext(AuthContext);
+  const navigate = useNavigate(); 
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
+
   return (
     <nav className="navbar navbar-expand-lg sticky-top app-navbar">
       <div className="container">
@@ -31,13 +44,21 @@ const Header = () => {
           id="navbarContent"
         >
           <div className="nav-actions">
-            <Link to="/login" className="login-btn">
-              Login
-            </Link>
+            {isLoggedIn ? (
+              <button className="register-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/login" className="login-btn">
+                  Login
+                </Link>
 
-            <Link to="/register" className="register-btn">
-              Get Started
-            </Link>
+                <Link to="/register" className="register-btn">
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
 
