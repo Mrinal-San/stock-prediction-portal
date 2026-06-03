@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../assets/css/Register.css";
 import { AuthContext } from "../AuthProvider";
 import { useContext } from "react";
-import axios from "axios";
+import axiosInstance from "../axiosInstance";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -25,12 +25,12 @@ const Login = () => {
         console.log('userData==>', userData);
 
         try{
-            const response = await axios.post('http://localhost:8000/api/v1/token/', userData);
+            const response = await axiosInstance.post('token/', userData);
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
             console.log('Login successful!');
             setIsLoggedIn(true);
-            navigate('/');
+            navigate('/dashboard');
         }catch(error){
             console.error('Invalid credentials');
             setError('Invalid username or password. Please try again.');
@@ -83,7 +83,7 @@ const Login = () => {
 
         <div className="register-footer">
           Don't have an account?
-          <a href="/register"> Sign Up</a>
+          <Link to="/register"> Sign Up</Link>
         </div>
       </div>
     </div>

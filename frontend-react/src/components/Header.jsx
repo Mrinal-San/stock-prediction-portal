@@ -45,9 +45,14 @@ const Header = () => {
         >
           <div className="nav-actions">
             {isLoggedIn ? (
+              <>
+              <Link to="/dashboard" className="login-btn">
+                Explore Now
+              </Link>
               <button className="register-btn" onClick={handleLogout}>
                 Logout
               </button>
+              </>
             ) : (
               <>
                 <Link to="/login" className="login-btn">

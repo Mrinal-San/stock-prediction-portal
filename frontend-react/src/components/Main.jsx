@@ -2,8 +2,12 @@ import React from "react";
 import "../assets/css/Main.css";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider";
 
 const Main = () => {
+  const { isLoggedIn } = useContext(AuthContext);
   return (
       <section className="hero-section">
       <div className="container">
@@ -25,13 +29,22 @@ const Main = () => {
           </p>
 
           <div className="hero-buttons">
-            <a href="/register" className="primary-btn">
-              Get Started
-            </a>
-
-            <a href="/login" className="secondary-btn">
+          {isLoggedIn ? (
+            <Link to="/dashboard" className="primary-btn">
+              Explore Now
+            </Link>
+            ) : (
+            <>
+            <Link to="/login" className="login-btn">
               Login
-            </a>
+            </Link>
+          
+            <Link to="/register" className="register-btn">
+              Get Started
+            </Link>
+            </>
+                      )}
+
           </div>
 
         </div>
